@@ -40,10 +40,38 @@ def apartment_index():
     pass
 
 
-def return_bool():
+def return_bool(item_list, item):
     """question 3) create a binary search on a sorted array and returns a bool"""
-    pass
+    # initilize first and last value
+    first = 0
+    last = len(item_list)-1
+    # initalize found condition
+    found = False
+    # make sure that first remains less than last
+    while first <= last and not found:
+        print("searching")
+        # search for value at midpoint
+        midpoint = (first + last)//2
+        print("current midpoint: ", item_list[midpoint])
+        # if midpoint value is item, we are done
+        if item_list[midpoint] == item:
+            found = True
+        # if midpoint value is greater than item, search first half
+        else:
+            if item_list[midpoint] > item:
+                last = midpoint - 1
+                print("last: ", last)
+            # if midpoint value is less than item, search second half
+            else:
+                if item_list[midpoint] < item:
+                    first = midpoint + 1
+                    print("first: ", first)
+
+    print("found", found)
+    return found
 
 if __name__ in "__main__":
     NUMBERS = [1, 50, 4, 31, 108, 15, 7]
-    return_product(NUMBERS)
+    # return_product(NUMBERS)
+    SORTED_NUMBERS = [1, 4, 6, 10, 18, 22, 35, 49, 51, 72, 80, 101, 203]
+    return_bool(SORTED_NUMBERS, 18)
