@@ -49,7 +49,6 @@ def return_bool(item_list, item):
     found = False
     # make sure that first remains less than last
     while first <= last and not found:
-        print("searching")
         # search for value at midpoint
         midpoint = (first + last)//2
         print("current midpoint: ", item_list[midpoint])
@@ -72,6 +71,6 @@ def return_bool(item_list, item):
 
 if __name__ in "__main__":
     NUMBERS = [1, 50, 4, 31, 108, 15, 7]
-    # return_product(NUMBERS)
+    return_product(NUMBERS)
     SORTED_NUMBERS = [1, 4, 6, 10, 18, 22, 35, 49, 51, 72, 80, 101, 203]
     return_bool(SORTED_NUMBERS, 18)
