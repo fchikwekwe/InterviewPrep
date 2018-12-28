@@ -69,8 +69,25 @@ def return_bool(item_list, item):
     print("found", found)
     return found
 
+def return_output(number_list):
+    """question 4) given an array, numbers, of N integers, return an array output
+    such that output[i] is equal to the product  of all integers except numbers[i]"""
+    # for each index in range, return
+    pass
+
+def factorial_recursive():
+    """question 5) create a factorial recurssive function
+    that returns an Int (e.g. factorialRecurssive(num: 5) returns 120 (5*4*3*2*1)"""
+    pass
+
+def unique_char():
+    """question 6) check if a word has all unique characters. returns Boolean of the unique word."""
+    pass
+
+
 if __name__ in "__main__":
     NUMBERS = [1, 50, 4, 31, 108, 15, 7]
     return_product(NUMBERS)
     SORTED_NUMBERS = [1, 4, 6, 10, 18, 22, 35, 49, 51, 72, 80, 101, 203]
     return_bool(SORTED_NUMBERS, 18)
+    PRODUCT_NUMBERS = [2, 4, 5, 10]
