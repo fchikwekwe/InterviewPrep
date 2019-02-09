@@ -121,7 +121,7 @@ class StackLL:
         self.head = None
 
     def is_empty(self):
-        if self.head == None
+        if self.head == None:
             return True
         return False
 

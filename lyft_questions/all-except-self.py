@@ -12,7 +12,7 @@ Please solve it in O(n) and without division.
 # multiply those values together
 # return that multiplied value
 
-ints = [2, 4, 6, 8]
+ints = [1, 2, 3, 4]
 
 def all_else_product(array_of_ints):
     products = []
@@ -39,13 +39,16 @@ def all_else_product_opt(int_list):
     list_length = len(int_list)
     output = []
     for i in range(list_length):
+        print("product", product)
         # product = 1 is fine to append because it doesn't change value
         output.append(product)
         product = product * int_list[i]
+        print("output", output)
     # use a neutral number to multiply with
     product = 1
     # move backwards through the array in stepwise fashion
     for i in range(list_length -1, -1, -1):
+        print("output", output)
         # the output list value at the current index is multiplied by the product
         output[i] = output[i] * product
         # the product is multiplied by the input list value at the current index
