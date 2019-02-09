@@ -37,33 +37,30 @@ def asteroidCollision(self, asteroids):
                 res.append(asteroid)
     return res
 
-- Find All Peaks [Not finished]
+- Find A Peak
 
 def find_peak(nums):
-    left = 0
-    right = len(nums)-1
+    first = 0
+    last = len(nums)-1
     peaks = []
 
-    # What if the list is empty?
     if nums == []:
         return []
-    # What if the list has only one item?
     if len(nums) == 1:
         return [0] # list with index of peak
     # Lets use an iterative approach with binary search
-    while left < right - 1:
-        mid = (left + right) // 2
+    while first < last - 1:
+        mid = (first + last) // 2
         # when we've reached a peak greater than number
         if nums[mid] > nums[mid + 1] and nums[mid] > nums[mid - 1]:
-            peaks.append(mid)
+            return mid
         # climbing the peak
         if nums[mid] < nums[mid+1]:
             # we need to move the goal post
-            left = mid + 1
+            first = mid + 1
             # descending the peak
         else:
-            right = mid - 1
-    return peaks
+            last = mid - 1
 
 - Implement a Stack
 
