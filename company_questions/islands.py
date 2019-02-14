@@ -1,5 +1,4 @@
-"""				Lyft Interview Question : Islands
-
+"""
 Given a Multidimensional array, return the number of island clusters where land
 is represented by 1 and water by 0. A cluster of islands is defined by a 1 or
 pack of one enclosed by 0’s left and right, NOT diagonally.
