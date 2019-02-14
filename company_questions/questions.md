@@ -1,17 +1,17 @@
 | Solved? | Mastered? | Question |
 |--------------------------------|
-| [] | [] | asteroid collision|
+| [X] | [] | asteroid collision|
 | [] | [] | find all peaks|
 | [X] | [X] | implement a stack|
 | [X] | [X] | islands|
 | [X] | [] | find the path|
 | [X] | [X] | return dups from two sorted arrays|
-| [] | [] | return dups from one unsorted array|
-| [X] | [] | return products all except self |
+| [X] | [] | return dups from one unsorted array|
+| [X] | [X] | return products all except self |
 
 - asteroid collision
 
-def asteroidCollision(self, asteroids):
+def asteroidCollision(asteroids):
     res = []
     for asteroid in asteroids:
         if len(res) == 0 or asteroid > 0:
@@ -42,25 +42,27 @@ def asteroidCollision(self, asteroids):
 def find_peak(nums):
     first = 0
     last = len(nums)-1
-    peaks = []
 
     if nums == []:
-        return []
+        return None
     if len(nums) == 1:
-        return [0] # list with index of peak
+        return 0 # list with index of peak
     # Lets use an iterative approach with binary search
-    while first < last - 1:
+    while first < last:
         mid = (first + last) // 2
         # when we've reached a peak greater than number
-        if nums[mid] > nums[mid + 1] and nums[mid] > nums[mid - 1]:
-            return mid
+        if nums[mid] > nums[mid + 1]:
+            last = mid
         # climbing the peak
         if nums[mid] < nums[mid+1]:
             # we need to move the goal post
             first = mid + 1
-            # descending the peak
-        else:
-            last = mid - 1
+    return last
+
+- Find All Peaks
+# iterate through the list
+# compare the left and right values
+
 
 - Implement a Stack
 
@@ -188,15 +190,59 @@ def find_duplicate(nums1, nums2):
 - Return duplicates from unsorted array
 input = [1, 5, 3, 0, 1, 4, 8, 10, 2]
 
-def findDuplicates(self, nums):
+def find_duplicates_no_negatives(nums):
     """
-    :type nums: List[int]
-    :rtype: List[int]
+    Assuming that there can be no negatives or zeros.
     """
-    res = []
-    for x in nums:
-        if nums[abs(x)-1] < 0:
-            res.append(abs(x))
+    output = []
+    for num in nums:
+        # Numbers should only be negative if you've flagged them
+        # Use absolute value since it might have been marked negative already
+        if nums[abs(num)-1] < 0:
+            output.append(abs(num))
+        # Flag the value so that you know its duplicated if you see it again
         else:
-            nums[abs(x)-1] *= -1
-    return res
+            nums[abs(num)-1] * = -1
+    return output
+
+def hash_duplicates(nums):
+    """
+    Time complexity: O(n), iterates twice, but not nested
+    Space complexity: O(m), the size of the dictionary
+    """
+    duplicates = []
+    hash_table = {}
+
+    for num in nums:
+        try:
+            hash_table[num] += 1
+        except:
+            hash_table[num] = 1
+    for item in hash_table:
+        print(hash_table)
+        if hash_table[item] > 1:
+            duplicates.append(item)
+    return duplicates
+
+def find_duplicates(nums):
+    """
+    Time complexity: O(n), iterates twice, but not nested
+    Space complexity: O(1), only uses space for output
+    """
+    i = 0
+    # iterate through the whole array
+    for i in range(len(nums)):
+        print(nums)
+        if nums[i] != nums[nums[i] - 1]:
+            # swap elements to their expected place in the list
+            # expected place = index value offset by one
+            # only duplicates wont be at their expected spots
+            nums[nums[i] -1], nums[i] = nums[i], nums[nums[i] -1]
+
+    duplicates = []
+    for i in range(len(nums)):
+        print(nums, duplicates)
+        if nums[nums[i] - 1] == nums[i] and i != nums[i] - 1:
+            duplicates.append(nums[i])
+
+    return duplicates
