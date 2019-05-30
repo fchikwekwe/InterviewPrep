@@ -32,3 +32,12 @@ def asteroidCollision(asteroids):
                 # bottom of the stack and destroyed all asteroids.
                 res.append(asteroid)
     return res
+
+
+
+def asteroid_col(asteroids):
+    results = []
+
+    for asteroid in asteroids:
+        if len(results) == 0:
+            results.append(asteroid)
