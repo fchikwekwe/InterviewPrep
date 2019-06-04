@@ -5,6 +5,26 @@ class Node(object):
         self.left = None
         self.right = None
 
+class Min_Heap():
+    def __init__(self, items=None):
+        self.heap = None 
+        if items is not None: 
+            for item in items: 
+                self.insert(item)
+
+    def insert(self, item):
+        node = Node(item)
+
+        # find a leaf for item
+        # add node as child of leaf
+        # keep track of leaf as parent of child
+
+        # while node is smaller than parent 
+            # switch parent and node data
+            # reassign node variable to parent
+            # find node's parent and reassign parent variable
+            
+
 def array_insert(heap, node):
     heap.append(node)
     index = len(heap) - 1
