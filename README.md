@@ -1,4 +1,4 @@
-# Technical Interview Preparation 
+# Technical Interview Preparation
 
 Interview questions that I've practiced from Leetcode, Hackerrank, Exercism and other online sources.
 
