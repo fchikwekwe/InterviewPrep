@@ -32,7 +32,7 @@ class LinkedList(object):
         # Create a new node to hold the given item
         new_node = Node(item)
         # Check if this linked list is empty
-        if self.is_empty():
+        if self.size == 0:
             # Assign head to new node
             self.head = new_node
         else:
@@ -43,17 +43,19 @@ class LinkedList(object):
         # Update tail to new node regardless
         self.tail = new_node
 
-    def middle():
+    def middle(self):
+        """
+        Clarified with interviewer: 
+        - If self.size is 0, then return None 
+        - If there is one middle value, return just data
+        - If there are two middle values, return tuple with data
+        """
         if self.size == 0:
             # Linked List is empty
             return None
 
-        if self.size is None:
-            raise AssertionError("No valid Linked List was provided.")
-
         even = False
-        if self.size % 2 == 0:
-            // even
+        if self.size % 2 == 0: # even
             mid_ind = self.size / 2
             even = True
         else:
@@ -73,4 +75,20 @@ class LinkedList(object):
             return (first, second)
 
         # if size is not even, there is one middle value
-        return (node.data)
+        return node.data
+
+
+def test_linked_list():
+    ll = LinkedList(['A', 'B', 'C', ])
+    print(ll)
+    ll_2 = LinkedList([1, 2, 3, 4])
+    ll_3 = LinkedList()
+    print('Testing middle method:')
+    print(ll.middle())
+    print(ll_2.middle())
+    print(ll_3.middle())
+
+
+
+if __name__ == '__main__':
+    test_linked_list()
