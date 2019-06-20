@@ -12,13 +12,16 @@ def dfs(graph, node, visited=set()):
         for neighbor in graph[node]:
             dfs(graph, neighbor, visited)
 
-    # if not all nodes were visited, return False
-    if len(visited) < len(graph):
-        return False
-    return True  # all nodes were visited
+    # if not all nodes were visited, return False; otherwise True
+    return not (len(visited) < len(graph))
 
 if __name__ == "__main__":
     # uncomment one rooms variable below to test
-    rooms = [[1], [2], [3], []] # true
-    # rooms = [[1, 3], [3, 0, 1], [2], [0]] # false
+    """
+    graph = {
+        0: [1],
+    }
+    """
+    # rooms = [[1], [2], [3], []] # true
+    rooms = [[1, 3], [3, 0, 1], [2], [0]] # false
     print(can_visit_all_rooms(rooms))
