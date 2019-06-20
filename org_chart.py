@@ -5,6 +5,9 @@ org_chart = [
     'F, G, H'
     'G, I'
 ]
+{
+
+}
 
 Output: 
 A
@@ -19,6 +22,7 @@ A
 
 """
 
+
 org_chart = [
     'A,B,C,D',
     'B,E,F',
@@ -30,7 +34,9 @@ graph = {}
 
 for string in org_chart: 
     string_list = string.split(',')
-    graph[string_list[0]] = string_list[1:]
+
+    # turn the values into sets if the order doesn't matter
+    graph[string_list[0]] = set(string_list[1:])
 
 print(graph)
 
@@ -50,7 +56,17 @@ def dfs(graph, vertex, level=0):
         # recursive case 
         dfs(graph, child, level)
 
+def find_start_node(graph):
+    values = {val for v in graph.values() for val in v}
+    
+    for key in graph.keys():
+        if key not in values: 
+            return graph.keys()
+    return None # no starting node
+            
 
-
-
-dfs(graph, 'A')
+start = find_start_node(graph)
+if start: 
+    dfs(graph, 'A')
+else: 
+    print("Please provide a valid org chart.")
