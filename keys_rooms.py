@@ -17,11 +17,6 @@ def dfs(graph, node, visited=set()):
 
 if __name__ == "__main__":
     # uncomment one rooms variable below to test
-    """
-    graph = {
-        0: [1],
-    }
-    """
     # rooms = [[1], [2], [3], []] # true
     rooms = [[1, 3], [3, 0, 1], [2], [0]] # false
     print(can_visit_all_rooms(rooms))
