@@ -32,14 +32,12 @@ org_chart = [
 
 def make_graph(org_chart):
     graph = {}
-
     for string in org_chart: 
         string_list = string.split(',')
-
         # turn the values into sets if the order doesn't matter
         graph[string_list[0]] = set(string_list[1:])
 
-    print(graph)
+    return graph
 
 def dfs(graph, vertex, level=0):
     dots = "...." * level
@@ -64,10 +62,18 @@ def find_start_node(graph):
         if key not in values: 
             return graph.keys()
     return None # no starting node
+
+
+# def find_start_node(graph):
+#     counter = 0 
+#     for key, value in graph: 
+#         counter = 1
+#         while counter != len(graph):
+
             
 graph = make_graph(org_chart)
 start = find_start_node(graph)
 if start: 
     dfs(graph, 'A')
 else: 
-    print("Please provide a valid org chart.")
+    print("Please provide a valid organization chart.")
