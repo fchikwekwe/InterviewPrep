@@ -1,7 +1,7 @@
 
 def can_visit_all_rooms(rooms):
     graph = {i: val for i, val in enumerate(rooms)}
-    # print(graph)
+    
     # since nodes are 0 to n - 1, we can start with node 0
     return dfs(graph, 0)
 
@@ -13,7 +13,9 @@ def dfs(graph, node, visited=set()):
             dfs(graph, neighbor, visited)
 
     # if not all nodes were visited, return False; otherwise True
-    return not (len(visited) < len(graph))
+    if len(visited) < len(graph):
+        return False
+    return True
 
 if __name__ == "__main__":
     # uncomment one rooms variable below to test
