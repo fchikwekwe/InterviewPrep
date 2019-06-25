@@ -1,22 +1,36 @@
-def flatten(diction, new_dict=None, new_key=None):
-    print('current output\n', new_dict)
+
+
+from pprint import pprint
+
+
+def flatten(dictionary, new_dict=None, old_key=None):
+    """
+    Algorithmic complexity analysis
+    n = total number of items in dictionary 
+    k = total number of original keys in dictionary
+    v = total number of values in dictionary 
+    s = average length of original keys 
+    m = max depth of recursive stack
+    
+    Time complexity: O(v + k * (s + m))
+    """
     if new_dict is None:
-        new_dict = {}
+        new_dict = {}  # O(v) time, space in the end
 
-    for key, value in diction.items():
-        if new_key is None:
-            new_key = str(key)
+    for key, value in dictionary.items():  # O(k) time
+        if old_key is None:
+            # maybe add validation for keys?
+            new_key = str(key)  # O(s) time, space
         else:
-
-            new_key = new_key + '_' + str(key)
-            print(new_key)
+            new_key = old_key + '_' + str(key)  # O(s), time, space
 
         try:
+            # RECURSIVE CASE; could also use conditional
             for item in value:
-                flatten(value, new_dict, new_key)
+                flatten(value, new_dict, new_key)  # O(m) space
         except:
-            # base case; value is no longer iterable
-            new_dict[new_key] = value
+            # BASE CASE
+            new_dict[new_key] = value  # O(1) time, space
 
     return new_dict
 
@@ -24,4 +38,31 @@ def flatten(diction, new_dict=None, new_key=None):
 example = {'Geeks': {'for': {'for': 1, 'geeks': 4}}, 'for': {
     'geeks': {'Geeks': 3}}, 'geeks': {'Geeks': {'for': 7}}}
 
-print(flatten(example))
+# pprint(example)
+pprint(flatten(example))
+
+'''
+Pseudocode: 
+
+- have a new_dict to store the output
+
+- iterate over the key, value pairs in original dict
+- check if the old_key was None
+    - if None, then new_key = key 
+    - else, new_key = old_key + _ + key
+
+- try to iterate over value: 
+    - RECURSIVE CASE: if you can, the recursively call flatten while passing in value, new dict and new key
+    - BASE CASE: if not, then set new key as key and current value as value in new_dict 
+    
+- returns new dict 
+
+
+Thoughts: 
+- recursive approach 
+- old_key from previous call, new_key to next call 
+- params: original dict, new dict, old_key (this changes every time)
+- changing the string each time as we recurse 
+- BASE CASE: when value is not dict/ not iterable 
+    - try/catch block? 
+'''
