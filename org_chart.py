@@ -32,14 +32,20 @@ org_chart = [
 
 def make_graph(org_chart):
     graph = {}
+    all_reports = set()
     for string in org_chart: 
         string_list = string.split(',')
         # turn the values into sets if the order doesn't matter
-        graph[string_list[0]] = set(string_list[1:])
+        manager = string_list[0]
+        reports = string_list[1:]
+        graph[manager] = reports
+        for report in reports: # look up if there is extend-like func for sets
+            all_reports.add(report)
 
-    return graph
+    return graph, all_reports
 
 def dfs(graph, vertex, level=0):
+
     dots = "...." * level
     print(dots + vertex)
 
@@ -55,25 +61,30 @@ def dfs(graph, vertex, level=0):
         # recursive case 
         dfs(graph, child, level)
 
-def find_start_node(graph):
-    values = {val for v in graph.values() for val in v}
-    
+def find_start_node(graph, all_reports):
     for key in graph.keys():
-        if key not in values: 
-            return graph.keys()
+        if key not in all_reports: 
+            return key
     return None # no starting node
 
 
 # def find_start_node(graph):
 #     counter = 0 
-#     for key, value in graph: 
-#         counter = 1
-#         while counter != len(graph):
+#     for key, _ in graph: 
+        
+            
+        
 
             
-graph = make_graph(org_chart)
-start = find_start_node(graph)
+graph, all_reports = make_graph(org_chart)
+start = find_start_node(graph, all_reports)
+print(start)
 if start: 
     dfs(graph, 'A')
 else: 
     print("Please provide a valid organization chart.")
+
+
+"""
+Given an arr 
+"""
